@@ -1,6 +1,7 @@
 import ErrorHandler from "../utils/errorHandler";
 
 const middleware = (err, req, res, next) => {
+    console.log(err)
   err.statusCode = err.statusCode || 500;
 
   let error = { ...err };

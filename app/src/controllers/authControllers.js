@@ -1,31 +1,28 @@
-import absoluteUrl from "next-absolute-url";
-import crypto from "crypto";
+import catchAsyncErrors from '../middlewares/catchAsyncErrors';
+// import { preparePassword } from '../utils/cryptoUtils';
+import db from '../db/models';
 
-import ErrorHandler from "../utils/errorHandler";
-import catchAsyncErrors from "../middlewares/catchAsyncErrors";
-
+const { models: { User } } = db;
 
 // Register user   =>   /api/auth/register
 const registerUser = catchAsyncErrors(async (req, res) => {
-
   const { name, email, password, secondName, role, phoneNumber } = req.body;
 
-  const correctPass = await preparePassword(password)
+//   const correctPass = await preparePassword(password)
 
   const user = await User.build({
     name,
     email,
-    password: correctPass,
+    password,
     secondName,
     role,
-    phoneNumber
-  }); 
-  console.log(user)
-  await user.save()
+    phoneNumber,
+  });
+  await user.save();
 
   res.status(200).json({
     success: true,
-    message: "Account Registered successfully",
+    message: 'Account Registered successfully',
   });
 });
 
