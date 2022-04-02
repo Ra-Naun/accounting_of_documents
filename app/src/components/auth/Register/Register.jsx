@@ -41,19 +41,21 @@ const RegisterPage = () => {
       phoneNumber,
       role,
     };
+    console.log(userData)
 
     // dispatch(registerUser(userData));
   };
 
   const onChange = (e) => {
-      setUser({ ...user, [e.target.name]: e.target.value });
+      const value = e.target.name === 'role' ? e.target.text : e.target.value
+      setUser({ ...user, [e.target.name]: value });
   };
 
   return (
     <div className="d-flex justify-content-center mt-5 mb-3">
       <div className="wrapper">
         <div>
-          <Form className="shadow-lg py-3 px-4" onSubmit={submitHandler} style={{minWidth: '360px'}}>
+          <Form className="shadow-lg py-3 px-4 bg-white" onSubmit={submitHandler} style={{minWidth: '360px'}}>
               <div className="d-flex justify-content-center">
               <img
                 className="my-5 mx-5"
@@ -65,30 +67,31 @@ const RegisterPage = () => {
               </div>
 
             <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                <Form.Control size="lg" type="text" placeholder="Имя" value={name} onChange={onChange}/>
+                <Form.Control size="lg" type="text" name="name" placeholder="Имя" value={name} onChange={onChange}/>
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                <Form.Control size="lg" type="text" placeholder="Фамилия" value={secondName} onChange={onChange} />
+                <Form.Control size="lg" type="text" placeholder="Фамилия" name="secondName" value={secondName} onChange={onChange} />
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                <Form.Control size="lg" type="text" placeholder="Телефон" value={phoneNumber} onChange={onChange} />
+                <Form.Control size="lg" type="text" placeholder="Телефон" name="phoneNumber" value={phoneNumber} onChange={onChange} />
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                <Form.Control size="lg" type="text" placeholder="Email" value={email} onChange={onChange} />
+                <Form.Control size="lg" type="text" placeholder="Email" name="email" value={email} onChange={onChange} />
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                <Form.Control size="lg" type="password" placeholder="Пароль" value={password} onChange={onChange} />
+                <Form.Control size="lg" type="password" placeholder="Пароль" name="password" value={password} onChange={onChange} />
             </Form.Group>
 
             <Form.Group>
-            <DropdownButton className="mb-4 register__dropdown" size="lg" id="dropdown-basic-button" title="Роль в системе">
-                <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
+            <DropdownButton className="mb-4 register__dropdown" size="lg" id="dropdown-basic-button" title={role ? role : 'Роль в системе'}>
+                <Dropdown.Item onClick={onChange} name="role">Администратор</Dropdown.Item>
+                <Dropdown.Item onClick={onChange} name="role">Работник склада</Dropdown.Item>
+                <Dropdown.Item onClick={onChange} name="role">Экспедитор</Dropdown.Item>
+                <Dropdown.Item onClick={onChange} name="role">Продавец</Dropdown.Item>
             </DropdownButton>
             </Form.Group>
 
