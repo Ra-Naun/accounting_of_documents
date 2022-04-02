@@ -1,7 +1,5 @@
-'use strict';
-
 module.exports = {
-  async up (queryInterface, Sequelize) {
+  async up(queryInterface, Sequelize) {
     /**
      * Add seed commands here.
      *
@@ -16,27 +14,27 @@ module.exports = {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
-        type: DataTypes.INTEGER,
+        type: Sequelize.INTEGER,
       },
       name: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
       secondName: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
       password: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
       phoneNumber: {
-        type: DataTypes.STRING,
+        type: Sequelize.STRING,
       },
       role: {
-        type: DataTypes.STRING,
-      }
-    })
+        type: Sequelize.STRING,
+      },
+    });
   },
 
-  async down (queryInterface, Sequelize) {
+  async down(queryInterface, Sequelize) {
     /**
      * Add commands to revert seed here.
      *
@@ -44,5 +42,5 @@ module.exports = {
      * await queryInterface.bulkDelete('People', null, {});
      */
      await queryInterface.dropTable('users');
-  }
+  },
 };
