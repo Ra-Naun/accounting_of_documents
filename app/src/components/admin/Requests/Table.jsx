@@ -4,10 +4,12 @@ import { fetcher } from '../../../utils';
 import TableRow from './TableRow';
 
 export default function TableDec(props) {
-  const { data, error } = useSWR('/api/test-counter', fetcher);
+  const { data, error } = useSWR('/api/admin/get-new-users', fetcher, { refreshInterval: 150 });
 
   if (error) return <div>Ошибка загрузки</div>;
-  if (!data) return <div>загрузка...</div>;
+  if (!data) return <div>Загрузка...</div>;
+
+  console.log('~| data: ', data);
 
   return (
     <Table striped bordered hover>
@@ -22,7 +24,7 @@ export default function TableDec(props) {
     </thead>
     <tbody>
     {
-      data.length ? data.map(
+      data?.newUsers?.length ? data?.newUsers.map(
         (user, idx) => (<TableRow key = {user.id} count = {idx} user = {user}/>),
       )
       : <Container className="md-container">Новых заявок на регистрацию нет...</Container>
