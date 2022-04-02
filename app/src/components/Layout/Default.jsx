@@ -5,9 +5,7 @@ import Footer from '../common/Footer/Footer';
 function Default({ children }) {
   return (
     <>
-      <Header/>
-      <main className="default_layout">{children}</main>
-      <Footer/>
+        <main>{children}</main>
     </>
   );
 }
