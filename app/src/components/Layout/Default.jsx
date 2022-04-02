@@ -6,8 +6,10 @@ import Head from 'next/head';
 function Default({ children, title }) {
   return (
     <>
+        <Header />
         {title && <Head><title>{title}</title></Head>}
         <main>{children}</main>
+        <Footer />
     </>
   );
 }
