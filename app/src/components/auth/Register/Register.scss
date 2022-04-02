@@ -1,0 +1,30 @@
+.register {
+    &__dropdown {
+        button {
+            width: 100%;
+            background: none;
+            color: #495057;
+            border-color: #ced4da;
+            text-align: left;
+
+            &::after {
+                margin-left: 170px;
+            }
+        }
+    }
+
+    &__rules {
+        max-width: 360px;
+        color: #88929A;
+        font-size: 12px;
+        
+        a {
+            color: #88929A;
+            text-decoration: underline;
+        }
+    }
+}
+
+.dropdown-menu.show {
+    width: 100%;
+}
