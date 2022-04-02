@@ -4,12 +4,48 @@ import db from '../db/models';
 
 const { models: { User } } = db;
 
-// Register user   =>   /api/auth/register
+// Done for request on create new user    =>   /api/admin/activate-user/:id
+const activateUser = catchAsyncErrors(async (req, res) => {
+  // TODO check Auth
+  const { id } = req.query;
+  await User.update(
+    {
+      isActive: true,
+    },
+    {
+      where: { id },
+    },
+  );
+
+  res.status(200).json({
+    success: true,
+    message: 'Account activate successfully',
+  });
+});
+
+// Done for request on create new user    =>   /api/admin/disable-user/:id
+const disableUser = catchAsyncErrors(async (req, res) => {
+  // TODO check Auth
+  const { id } = req.query;
+  await User.update(
+    {
+      isActive: false,
+    },
+    {
+      where: { id },
+    },
+  );
+
+  res.status(200).json({
+    success: true,
+    message: 'Account disable successfully',
+  });
+});
+
+// Register user   =>   /api/admin/new-user
 const registerUser = catchAsyncErrors(async (req, res) => {
+  // TODO check Auth
   const { name, email, password, secondName, role, phoneNumber } = req.body;
-
-//   const correctPass = await preparePassword(password)
-
   const user = await User.build({
     name,
     email,
@@ -17,12 +53,23 @@ const registerUser = catchAsyncErrors(async (req, res) => {
     secondName,
     role,
     phoneNumber,
+    isActive: false,
   });
   await user.save();
 
   res.status(200).json({
     success: true,
     message: 'Account Registered successfully',
+  });
+});
+
+// Delete user   => /api/admin/delete-user/:id
+const deleteUser = catchAsyncErrors(async (req, res) => {
+  // TODO check Auth
+  await User.destroy({ where: { id: req.body.userId } });
+
+  res.status(200).json({
+    success: true,
   });
 });
 
@@ -220,6 +267,9 @@ const registerUser = catchAsyncErrors(async (req, res) => {
 
 export {
   registerUser,
+  activateUser,
+  disableUser,
+  deleteUser,
 //   currentUserProfile,
 //   updateProfile,
 //   forgotPassword,

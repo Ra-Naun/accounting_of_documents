@@ -1,14 +1,11 @@
 // import { getSession } from "next-auth/client";
 
-
-import Login from "../components/auth/Login/Login";
-import Layout from "../components/layout/Default";
+import Head from 'next/head';
+import Login from '../components/auth/Login/Login';
 
 export default function LoginPage() {
   return (
-    <Layout title="Register">
       <Login/>
-    </Layout>
   );
 }
 

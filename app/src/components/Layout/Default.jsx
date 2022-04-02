@@ -6,10 +6,10 @@ import Footer from '../common/Footer/Footer';
 function Default({ children, title }) {
   return (
     <>
-        <Header />
-        {title && <Head><title>{title}</title></Head>}
-        <main>{children}</main>
-        <Footer />
+      <Header />
+      {title && <Head><title>{title}</title></Head>}
+      <main>{children}</main>
+      <Footer />
     </>
   );
 }

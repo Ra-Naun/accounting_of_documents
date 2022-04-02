@@ -2,15 +2,15 @@ import Decide from './Decide';
 
 export default function TableRow(props) {
   const { user, count } = props;
-  const { firstName, lastName, role, id } = user;
+  const { name, secondName, role } = user;
   return (
     <>
       <tr>
         <td>{count}</td>
-        <td>{firstName}</td>
-        <td>{lastName}</td>
+        <td>{name}</td>
+        <td>{secondName}</td>
         <td>{role}</td>
-        <th><Decide userId = {id}/></th>
+        <th><Decide user = {user}/></th>
       </tr>
     </>
   );

@@ -20,13 +20,16 @@ export default (sequelize, DataTypes) => {
       },
       role: {
         type: DataTypes.STRING,
-      }
+      },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+      },
     },
     {
       tableName: 'users',
       timestamps: false,
       sequelize,
     });
-  
+
     return User;
   };

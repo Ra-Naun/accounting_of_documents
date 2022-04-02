@@ -1,4 +1,4 @@
-import { Table } from 'react-bootstrap';
+import { Table, Container } from 'react-bootstrap';
 import useSWR from 'swr';
 import { fetcher } from '../../../utils';
 import TableRow from './TableRow';
@@ -8,24 +8,6 @@ export default function TableDec(props) {
 
   if (error) return <div>Ошибка загрузки</div>;
   if (!data) return <div>загрузка...</div>;
-
-  const hardData = [
-    {
-      firstName: 'John',
-      lastName: 'Smitt',
-      role: 'admin',
-    },
-    {
-      firstName: 'John',
-      lastName: 'Smitt',
-      role: 'admin',
-    },
-    {
-      firstName: 'John',
-      lastName: 'Smitt',
-      role: 'admin',
-    },
-  ];
 
   return (
     <Table striped bordered hover>
@@ -40,9 +22,10 @@ export default function TableDec(props) {
     </thead>
     <tbody>
     {
-      hardData.map(
+      data.length ? data.map(
         (user, idx) => (<TableRow key = {user.id} count = {idx} user = {user}/>),
       )
+      : <Container className="md-container">Новых заявок на регистрацию нет...</Container>
     }
     </tbody>
     </Table>
