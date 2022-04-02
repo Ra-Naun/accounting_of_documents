@@ -6,7 +6,15 @@ const preparePassword = async (password) => await bcrypt.hash(password, 10)
 // Compare user password
 const comparePassword = async (enteredPass, password) => await bcrypt.compare(enteredPass, password)
 
-export default {
+const ID_MATCHER = {
+    'Работник склада': 1,
+    'Экспедитор': 2,
+    'Продавец': 3,
+    'Администратор': 4
+}
+
+export {
     preparePassword,
-    comparePassword
+    comparePassword,
+    ID_MATCHER,
 }

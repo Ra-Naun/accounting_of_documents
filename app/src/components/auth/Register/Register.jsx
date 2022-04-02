@@ -88,7 +88,6 @@ const RegisterPage = () => {
 
             <Form.Group>
             <DropdownButton className="mb-4 register__dropdown" size="lg" id="dropdown-basic-button" title={role ? role : 'Роль в системе'}>
-                <Dropdown.Item onClick={onChange} name="role">Администратор</Dropdown.Item>
                 <Dropdown.Item onClick={onChange} name="role">Работник склада</Dropdown.Item>
                 <Dropdown.Item onClick={onChange} name="role">Экспедитор</Dropdown.Item>
                 <Dropdown.Item onClick={onChange} name="role">Продавец</Dropdown.Item>

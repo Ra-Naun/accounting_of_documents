@@ -1,6 +1,10 @@
 import catchAsyncErrors from "../middlewares/catchAsyncErrors";
-import { preparePassword } from "../utils/cryptoUtils"
-import { User } from "../db/models/user"
+import { preparePassword, ID_MATCHER } from "../utils/cryptoUtils"
+
+import db from '../db/models';
+
+const { models: { User } } = db;
+
 
 
 // Register user   =>   /api/auth/register
@@ -8,17 +12,17 @@ const registerUser = catchAsyncErrors(async (req, res) => {
 
   const { name, email, password, secondName, role, phoneNumber } = req.body;
 
-//   const correctPass = await preparePassword(password)
+  const correctPass = await preparePassword(password)
 
   const user = await User.build({
     name,
     email,
-    password,
+    password: correctPass,
     secondName,
-    role,
+    role_id: ID_MATCHER[role],
     phoneNumber
   }); 
-  console.log(user)
+  
   await user.save()
 
   res.status(200).json({

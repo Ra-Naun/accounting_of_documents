@@ -28,9 +28,12 @@ module.exports = {
       phoneNumber: {
         type: Sequelize.STRING,
       },
-      role: {
-        type: Sequelize.STRING,
+      role_id: {
+        type: Sequelize.INTEGER,
       },
+      isActive: {
+        type: Sequelize.BOOLEAN
+      }
     });
   },
 
