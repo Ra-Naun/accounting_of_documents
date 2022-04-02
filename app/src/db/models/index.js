@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
-import config from '../config';
+import config from '../config.mjs';
 
-import counter from './counter';
+import counter from './counter.mjs';
 
 const db = { models: {} };
 

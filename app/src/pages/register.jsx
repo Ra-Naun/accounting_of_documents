@@ -1,8 +1,7 @@
 // import { getSession } from "next-auth/client";
 
-
-import Register from "../components/auth/Register/Register";
-import Layout from "../components/layout/Default";
+import Register from '../components/auth/Register/Register';
+import Layout from '../components/Layout/Default';
 
 export default function RegisterPage() {
   return (
