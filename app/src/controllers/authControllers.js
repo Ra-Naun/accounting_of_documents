@@ -8,13 +8,12 @@ const { models: { User } } = db;
 // Done for request on create new user    =>   /api/admin/activate-user/:id
 const activateUser = catchAsyncErrors(async (req, res) => {
   // TODO check Auth
-  const { id } = req.query;
   await User.update(
     {
       isActive: true,
     },
     {
-      where: { id },
+      where: { id: req.body.userId },
     },
   );
 
@@ -27,13 +26,12 @@ const activateUser = catchAsyncErrors(async (req, res) => {
 // Done for request on create new user    =>   /api/admin/disable-user/:id
 const disableUser = catchAsyncErrors(async (req, res) => {
   // TODO check Auth
-  const { id } = req.query;
   await User.update(
     {
       isActive: false,
     },
     {
-      where: { id },
+      where: { id: req.body.userId },
     },
   );
 

@@ -5,7 +5,7 @@ export default function Decide({ user }) {
   console.log('~| user: ', user);
 
   const decideYes = () => {
-    axios.post('/api/admin/new-user', { /* token */ ...user });
+    axios.post('/api/admin/activate-user', { /* token */ userId: user.id });
   };
 
   const decideNo = () => {

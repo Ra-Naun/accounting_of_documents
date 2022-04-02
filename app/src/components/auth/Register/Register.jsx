@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
 import { Button, Form, DropdownButton, Dropdown } from 'react-bootstrap';
 import Link from 'next/link';
+import axios from 'axios';
 
 const RegisterPage = () => {
   const router = useRouter();
@@ -41,7 +42,7 @@ const RegisterPage = () => {
       phoneNumber,
       role,
     };
-    console.log(userData);
+    axios.post('/api/admin/new-user', { /* token */ ...userData });
 
     // dispatch(registerUser(userData));
   };
@@ -70,19 +71,19 @@ const RegisterPage = () => {
                 <Form.Control size="lg" type="text" name="name" placeholder="Имя" value={name} onChange={onChange}/>
             </Form.Group>
 
-            <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-4" controlId="exampleForm.ControlInput2">
                 <Form.Control size="lg" type="text" placeholder="Фамилия" name="secondName" value={secondName} onChange={onChange} />
             </Form.Group>
 
-            <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-4" controlId="exampleForm.ControlInput3">
                 <Form.Control size="lg" type="text" placeholder="Телефон" name="phoneNumber" value={phoneNumber} onChange={onChange} />
             </Form.Group>
 
-            <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-4" controlId="exampleForm.ControlInput4">
                 <Form.Control size="lg" type="text" placeholder="Email" name="email" value={email} onChange={onChange} />
             </Form.Group>
 
-            <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
+            <Form.Group className="mb-4" controlId="exampleForm.ControlInput5">
                 <Form.Control size="lg" type="password" placeholder="Пароль" name="password" value={password} onChange={onChange} />
             </Form.Group>
 
