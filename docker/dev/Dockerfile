@@ -7,8 +7,8 @@ RUN apk add --update \
   zlib-dev \
   libpng-dev
 
-WORKDIR /src
+WORKDIR /app
 
-COPY ./src .
+COPY ./app .
 
 CMD ["sh", "-c", "yarn install && yarn dev"]

@@ -1,0 +1,59 @@
+{
+    "extends": [
+        "airbnb-base",
+        "plugin:react/recommended"
+    ],
+    "plugins": [
+        "import",
+        "react"
+    ],
+    "rules": {
+        "react/react-in-jsx-scope": "off",
+        "import/extensions": "off",
+        "no-underscore-dangle": "off",
+        "react/prop-types": "off",
+        "indent": "off",
+        "max-len": [
+            "error",
+            {
+                "ignoreComments": true,
+                "code": 120
+            }
+        ],
+        "import/prefer-default-export": "off",
+        "arrow-parens": [
+            "error",
+            "as-needed"
+        ],
+        "import/no-unresolved": "off",
+        "object-curly-newline": [
+            "error",
+            {
+                "consistent": true
+            }
+        ],
+        "class-methods-use-this": "off",
+        "no-unused-expressions": "off"
+    },
+    "parser": "babel-eslint",
+    "parserOptions": {
+        "sourceType": "module",
+        "allowImportExportEverywhere": true,
+        "ecmaVersion": 6,
+        "ecmaFeatures": {
+            "modules": true,
+            "experimentalObjectRestSpread": true,
+            "jsx": true
+        }
+    },
+    "settings": {
+        "import/resolver": {
+            "node": {
+                "extensions": [
+                    ".js",
+                    ".jsx"
+                ]
+            }
+        }
+    }
+}

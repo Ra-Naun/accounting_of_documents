@@ -1,22 +1,6 @@
 version: '3'
 
 services:
-  db:
-    image: postgres:12.1-alpine
-    environment:
-      POSTGRES_PASSWORD: root
-      POSTGRES_USER: root
-      POSTGRES_DB: docs_db
-    ports:
-      - 5433:5432
-    volumes:
-      - ./temp/dev/db-data:/var/lib/postgresql/data
-  
-  redis:
-    image: redis:5-alpine
-    volumes:
-      - ./temp/dev/redis:/data
-
   app:
     build:
       context: .
@@ -24,11 +8,25 @@ services:
     env_file:
       - ./docker/dev/env/.env
     ports:
-      - "3080:3080"
+      - "3000:3000"
     volumes:
-      - ./src:/src
+      - ./app:/app
     depends_on:
       - db
       - redis
 
+  db:
+    image: postgres:12.1-alpine
+    environment:
+      POSTGRES_PASSWORD: root
+      POSTGRES_USER: root
+      POSTGRES_DB: docs_db
+    ports:
+      - 5432:5432
+    volumes:
+      - ./temp/dev/db-data:/var/lib/postgresql/data
 
+  redis:
+    image: redis:5-alpine
+    volumes:
+      - ./temp/dev/redis:/data

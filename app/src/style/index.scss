@@ -1,0 +1,9 @@
+/* ensure all pages have Bootstrap CSS */
+@import "normalize/import-now";
+@import '~bootstrap/dist/css/bootstrap.min.css';
+@import './common.scss';
+
+// components:
+@import '../components/common/Header/style.scss';
+@import '../components/common/Test/style.scss';
+@import '../components/common/Footer/style.scss';
