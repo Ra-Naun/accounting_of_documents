@@ -18,12 +18,22 @@ export default (sequelize, DataTypes) => {
       phoneNumber: {
         type: DataTypes.STRING,
       },
+<<<<<<< HEAD
       role: {
         type: DataTypes.STRING,
       },
       isActive: {
         type: DataTypes.BOOLEAN,
       },
+=======
+      role_id: {
+        type: DataTypes.INTEGER,
+      },
+      isActive: {
+        type: DataTypes.BOOLEAN,
+        default: false
+      }
+>>>>>>> origin/check
     },
     {
       tableName: 'users',

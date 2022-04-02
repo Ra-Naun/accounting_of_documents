@@ -1,9 +1,16 @@
+<<<<<<< HEAD
 import catchAsyncErrors from '../middlewares/catchAsyncErrors';
 // import { preparePassword } from '../utils/cryptoUtils';
+=======
+import catchAsyncErrors from "../middlewares/catchAsyncErrors";
+import { preparePassword, ID_MATCHER } from "../utils/cryptoUtils"
+
+>>>>>>> origin/check
 import db from '../db/models';
 
 const { models: { User } } = db;
 
+<<<<<<< HEAD
 // Done for request on create new user    =>   /api/admin/activate-user/:id
 const activateUser = catchAsyncErrors(async (req, res) => {
   // TODO check Auth
@@ -16,6 +23,8 @@ const activateUser = catchAsyncErrors(async (req, res) => {
       where: { id },
     },
   );
+=======
+>>>>>>> origin/check
 
   res.status(200).json({
     success: true,
@@ -36,11 +45,15 @@ const disableUser = catchAsyncErrors(async (req, res) => {
     },
   );
 
+<<<<<<< HEAD
   res.status(200).json({
     success: true,
     message: 'Account disable successfully',
   });
 });
+=======
+  const correctPass = await preparePassword(password)
+>>>>>>> origin/check
 
 // Register user   =>   /api/admin/new-user
 const registerUser = catchAsyncErrors(async (req, res) => {
@@ -49,8 +62,9 @@ const registerUser = catchAsyncErrors(async (req, res) => {
   const user = await User.build({
     name,
     email,
-    password,
+    password: correctPass,
     secondName,
+<<<<<<< HEAD
     role,
     phoneNumber,
     isActive: false,
@@ -67,6 +81,13 @@ const registerUser = catchAsyncErrors(async (req, res) => {
 const deleteUser = catchAsyncErrors(async (req, res) => {
   // TODO check Auth
   await User.destroy({ where: { id: req.body.userId } });
+=======
+    role_id: ID_MATCHER[role],
+    phoneNumber
+  }); 
+  
+  await user.save()
+>>>>>>> origin/check
 
   res.status(200).json({
     success: true,
