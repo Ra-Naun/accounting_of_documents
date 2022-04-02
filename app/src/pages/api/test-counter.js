@@ -1,4 +1,4 @@
-import { getCounter, setCounter } from '../../services/server/TestCounter';
+import { getCounter, setCounter } from '../../controllers/testCounterController';
 
 export default async function handler(req, res) {
   switch (req.method) {
