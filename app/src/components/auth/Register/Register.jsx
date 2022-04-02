@@ -29,6 +29,7 @@ const RegisterPage = () => {
     //   toast.error(error);
     //   dispatch(clearErrors());
     // }
+    //
   }, [router]); // success error
 
   const submitHandler = e => {
