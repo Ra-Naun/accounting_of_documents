@@ -1,6 +1,7 @@
 import { Button } from 'react-bootstrap';
 
-export default function Home() {
+export default function Decide({ userId }) {
+  console.log('~| userId: ', userId);
   return (
     <div className="decide">
       <Button className="decide__yes">

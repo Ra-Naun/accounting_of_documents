@@ -1,17 +1,16 @@
 import Decide from './Decide';
 
 export default function TableRow(props) {
-  // const { firstname, lastname, role, } = props;
- const { data } = props;
- console.log('~| data', data);
+  const { user, count } = props;
+  const { firstName, lastName, role, id } = user;
   return (
     <>
       <tr>
-        <td>1</td>
-        <td>Mark</td>
-        <td>Otto</td>
-        <td>Otto</td>
-        <th><Decide/></th>
+        <td>{count}</td>
+        <td>{firstName}</td>
+        <td>{lastName}</td>
+        <td>{role}</td>
+        <th><Decide userId = {id}/></th>
       </tr>
     </>
   );
