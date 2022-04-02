@@ -1,15 +1,16 @@
 import React from 'react';
 import Head from 'next/head';
+import Logo from '../Logo/Logo';
 
-function Header(props) {
+function Header() {
   return (
     <>
       <Head>
         <title>ReactJS with react-bootstrap</title>
       </Head>
-      <div className="header">
-      {/* сюда контент для хедера */}
-      </div>
+      <header className="header">
+        <Logo/>
+      </header>
     </>
 
   );
