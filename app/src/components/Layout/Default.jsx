@@ -10,7 +10,6 @@ function Default({ children, title }) {
       {title && <Head><title>{title}</title></Head>}
       <main>
         {children}</main>
-      <Footer />
     </>
   );
 }
