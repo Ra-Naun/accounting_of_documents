@@ -93,4 +93,28 @@
       background-color: rgb(153, 114, 120);
     }
   }
+
+  .pagination{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    li{
+      margin: auto 7px;
+      a{
+        padding: 5px 10px;
+        cursor: pointer;
+        border-radius: 5px;
+        &:hover{
+          background: #4387fca6;
+          color: white;
+        }
+      }
+    }
+    li.active{
+      a{
+        background: #4386FC;
+        color: white;
+      }
+    }
+  }
 }

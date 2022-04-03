@@ -1,16 +1,8 @@
 import { Table, Container } from 'react-bootstrap';
-import useSWR from 'swr';
-import { fetcher } from '../../../utils';
 import TableRow from './TableRow';
 
-export default function TableDec({ searchText }) {
-  const query = `page=${1}&searchQuery=${searchText}`;
-  const { data, error } = useSWR(`/api/shop/get-orders?${query}`, fetcher, { refreshInterval: 150 });
-
-  if (error) return <div>Ошибка загрузки</div>;
-  if (!data) return <div>Загрузка...</div>;
-
-  console.log('~| data: ', data);
+export default function TableDec({ orders }) {
+  console.log('~| orders: ', orders);
 
   return (
     <Table striped bordered hover>
@@ -23,12 +15,12 @@ export default function TableDec({ searchText }) {
         <th>Дата заказа</th>
         <th>Цена</th>
         <th>Склад</th>
-        {data?.orders.find(item => item.status === 'Ожидает') && <th>Получение</th>}
+        {orders.find(item => item.status === 'Ожидает') && <th>Получение</th>}
       </tr>
     </thead>
     <tbody>
     {
-      data?.orders?.length ? data?.orders.map(
+      orders?.length ? orders.map(
         (item, idx) => (<TableRow key = {item.id} count = {idx} item = {item}/>),
       )
       : <Container className="md-container">Ничего нет...</Container>

@@ -1,20 +1,34 @@
 import { useState } from 'react';
-import { Container, Row, Card, Button, Form, DropdownButton, Dropdown } from 'react-bootstrap';
+import useSWR from 'swr';
+import { Container, Card, Form, DropdownButton, Dropdown } from 'react-bootstrap';
+import ReactPaginate from 'react-paginate';
+import { fetcher } from '../../../utils';
 import SearchField from './SearchField/SearchField';
 import Table from './Table';
 
 export default function Orders() {
   const [doc, setDoc] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
-  const [page, setPage] = useState(1);
-  const [list, setList] = useState([]);
+  const [page, setPage] = useState(0);
 
   const limit = 5;
+  const query = `page=${page + 1}&searchQuery=${searchQuery}&limit=${limit}`;
+  const { data, error } = useSWR(`/api/shop/get-orders?${query}`, fetcher, { refreshInterval: 150 });
+
+  if (error) return <div>Ошибка загрузки</div>;
+  if (!data) return <div>Загрузка...</div>;
+
+  const { orders, totalCount } = data;
 
   const onChange = e => {
     const value = e.target.name === 'role' ? e.target.text : e.target.value;
     setDoc(value);
   };
+
+  const handlePageClick = ({ selected }) => {
+    setPage(selected);
+  };
+
   return (
     <Container className="md-container orders-table">
       <Card className="md-container">
@@ -33,7 +47,20 @@ export default function Orders() {
             </DropdownButton>
           </Form.Group>
 
-          <Table searchText={searchQuery}/>
+          <Table orders={orders}/>
+          <ReactPaginate
+              previousLabel={'<'}
+              nextLabel={'>'}
+              breakLabel={'...'}
+              breakClassName={'break-me'}
+              pageCount={Math.ceil(totalCount / limit)}
+              forcePage={page}
+              marginPagesDisplayed={1}
+              pageRangeDisplayed={2}
+              onPageChange={handlePageClick}
+              containerClassName={'pagination'}
+              activeClassName={'active'}
+            />
         </Card.Body>
       </Card>
     </Container>
