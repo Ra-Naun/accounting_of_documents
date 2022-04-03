@@ -22,6 +22,9 @@ module.exports = {
       secondName: {
         type: Sequelize.STRING,
       },
+      email: {
+        type: Sequelize.STRING,
+      },
       password: {
         type: Sequelize.STRING,
       },
@@ -33,7 +36,7 @@ module.exports = {
       },
       isActive: {
         type: Sequelize.BOOLEAN
-      }
+      },
     });
   },
 

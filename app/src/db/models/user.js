@@ -12,6 +12,9 @@ export default (sequelize, DataTypes) => {
       secondName: {
         type: DataTypes.STRING,
       },
+      email: {
+        type: DataTypes.STRING,
+      },
       password: {
         type: DataTypes.STRING,
       },

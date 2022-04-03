@@ -1,20 +1,23 @@
-import { Provider } from 'mobx-react';
-import { useStore } from '../store';
 import Default from '../components/Layout/Default';
 import '../style/index.scss';
+import { wrapper } from "../redux/store";
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-export default function MyApp({ Component, pageProps, router: { route } }) {
-  const store = useStore(pageProps.initialState);
+const MyApp = ({ Component, pageProps, router: { route } }) => {
   const withoutLayout = ['/login', '/register'];
   return (
     withoutLayout.includes(route)
-    ? <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+    ?  <div>
+    <ToastContainer position='bottom-right' />
+    <Component {...pageProps} />
+    </div>
+        
     : <Default>
-        <Provider store={store}>
+          <ToastContainer position='bottom-right' />
           <Component {...pageProps} />
-        </Provider>
       </Default>
   );
 }
+
+export default wrapper.withRedux(MyApp)
