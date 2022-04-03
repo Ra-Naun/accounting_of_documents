@@ -1,5 +1,5 @@
 export default (sequelize, DataTypes) => {
-    const Order = sequelize.define('Order', {
+    const Storage = sequelize.define('Storage', {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -9,33 +9,21 @@ export default (sequelize, DataTypes) => {
       name: {
         type: DataTypes.STRING,
       },
-      count: {
-        type: DataTypes.INTEGER,
-      },
-      status: {
+      address: {
         type: DataTypes.STRING,
-      },
-      orderDate: {
-        type: DataTypes.DATE,
-      },
-      cost: {
-        type: DataTypes.FLOAT,
-      },
-      storageId: {
-        type: DataTypes.INTEGER,
       },
     },
     {
-      tableName: 'order',
+      tableName: 'storage',
       timestamps: false,
       sequelize,
     });
 
-    Order.associate = ({ Storage }) => {
-      Order.belongsTo(Storage, {
+    Storage.associate = ({ Order }) => {
+      Storage.hasMany(Order, {
         foreignKey: { name: 'storageId', allowNull: false },
         onDelete: 'CASCADE',
       });
     };
-    return Order;
+    return Storage;
   };

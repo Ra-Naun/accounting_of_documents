@@ -46,5 +46,9 @@
     &.returning{
       background-color: #EE3F58;
     }
+
+    &.returned{
+      background-color: rgb(153, 114, 120);
+    }
   }
 }

@@ -9,6 +9,7 @@ export default function Status(props) {
     Получен: 'received',
     Ожидает: 'await',
     Возвращается: 'returning',
+    Возвращен: 'returned',
   };
 
   const verifedStatus = Object.keys(classNamesForStatus).includes(status) ? status : '';

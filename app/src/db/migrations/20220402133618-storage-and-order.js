@@ -1,5 +1,20 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
+    await queryInterface.createTable('storage', {
+      id: {
+        allowNull: false,
+        autoIncrement: true,
+        primaryKey: true,
+        type: Sequelize.INTEGER,
+      },
+      name: {
+        type: Sequelize.STRING,
+      },
+      address: {
+        type: Sequelize.STRING,
+      },
+    });
+
     await queryInterface.createTable('order', {
       id: {
         allowNull: false,
@@ -22,13 +37,15 @@ module.exports = {
       cost: {
         type: Sequelize.FLOAT,
       },
-      storageName: {
-        type: Sequelize.STRING,
+      storageId: {
+        type: Sequelize.INTEGER,
+        references: { model: 'storage', key: 'id' },
       },
     });
   },
 
   async down(queryInterface, Sequelize) {
      await queryInterface.dropTable('order');
+     await queryInterface.dropTable('storage');
   },
 };
