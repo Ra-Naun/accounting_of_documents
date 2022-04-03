@@ -25,7 +25,7 @@ export default function TableDec(props) {
         <th>Дата заказа</th>
         <th>Цена</th>
         <th>Склад</th>
-        <th>Получение</th>
+        {data?.orders.find(item => item.status === 'Ожидает') && <th>Получение</th>}
       </tr>
     </thead>
     <tbody>

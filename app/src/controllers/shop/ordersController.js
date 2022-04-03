@@ -1,6 +1,6 @@
 import { Sequelize } from 'sequelize';
-import catchAsyncErrors from '../middlewares/catchAsyncErrors';
-import db from '../db/models';
+import catchAsyncErrors from '../../middlewares/catchAsyncErrors';
+import db from '../../db/models';
 
 const { models: { Order, Storage } } = db;
 
@@ -11,21 +11,19 @@ export const getOrders = catchAsyncErrors(async (req, res) => {
 
   let sequelizeQuery = {};
 
-  if (searchQuery) {
-    sequelizeQuery = {
-      ...sequelizeQuery,
-      where: {
-        [Sequelize.Op.or]: [
-          { name: { [Sequelize.Op.iLike]: `%${searchQuery}%` } },
-          { '$Storage.name$': { [Sequelize.Op.iLike]: `%${searchQuery}%` } },
-        ],
-      },
-      include: [{
-        model: Storage,
-        attributes: ['id', 'name'],
-      }],
-    };
-  }
+  sequelizeQuery = {
+    ...sequelizeQuery,
+    where: {
+      [Sequelize.Op.or]: [
+        { name: { [Sequelize.Op.iLike]: `%${searchQuery}%` } },
+        { '$Storage.name$': { [Sequelize.Op.iLike]: `%${searchQuery}%` } },
+      ],
+    },
+    include: [{
+      model: Storage,
+      attributes: ['id', 'name'],
+    }],
+  };
 
   const offset = Math.max((page - 1) * limit, 0);
   const totalCount = await Order.count(sequelizeQuery);

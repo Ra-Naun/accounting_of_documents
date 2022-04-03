@@ -4,7 +4,7 @@ import Status from './Status';
 
 export default function TableRow(props) {
   const { item, count: idx } = props;
-  const { name, count, status, orderDate, cost, storageName } = item;
+  const { name, count, status, orderDate, cost, Storage: { name: storageName } } = item;
   return (
     <>
       <tr className="table-row">
@@ -15,7 +15,7 @@ export default function TableRow(props) {
         <td>{moment(orderDate).format('YYYY-MM-DD, h:mm a') }</td>
         <td>${cost}</td>
         <td>{storageName}</td>
-        <th>{status === 'Ожидает' && <Decide item = {item}/>}</th>
+        {status === 'Ожидает' && <th><Decide item = {item}/></th>}
       </tr>
     </>
   );
