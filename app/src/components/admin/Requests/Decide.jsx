@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 import axios from 'axios';
-import useSWR, { useSWRConfig } from 'swr';
+import { useSWRConfig } from 'swr';
 
 export default function Decide({ user }) {
   const { mutate } = useSWRConfig();

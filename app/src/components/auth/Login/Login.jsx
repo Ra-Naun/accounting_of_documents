@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
-import { Button, Form } from "react-bootstrap";
-import Link from "next/link";
+import React, { useState, useEffect } from 'react';
+import { useRouter } from 'next/router';
+import { Button, Form } from 'react-bootstrap';
+import Link from 'next/link';
 
 const LoginPage = () => {
   const router = useRouter();
 
   const [user, setUser] = useState({
-    login: "",
-    password: "",
+    login: '',
+    password: '',
   });
 
   const { login, password } = user;
@@ -24,9 +24,9 @@ const LoginPage = () => {
     //   toast.error(error);
     //   dispatch(clearErrors());
     // }
-  }, [router]); //success error
+  }, [router]); // success error
 
-  const submitHandler = (e) => {
+  const submitHandler = e => {
     e.preventDefault();
 
     const userData = {
@@ -37,7 +37,7 @@ const LoginPage = () => {
     // dispatch(registerUser(userData));
   };
 
-  const onChange = (e) => {
+  const onChange = e => {
       setUser({ ...user, [e.target.name]: e.target.value });
   };
 
@@ -45,7 +45,7 @@ const LoginPage = () => {
     <div className="d-flex justify-content-center mt-5 mb-3">
       <div className="wrapper">
         <div>
-          <Form className="shadow-lg pt-3 pb-3 px-4 bg-white" onSubmit={submitHandler} style={{minWidth: '360px'}}>
+          <Form className="shadow-lg pt-3 pb-3 px-4 bg-white" onSubmit={submitHandler} style={{ minWidth: '360px' }}>
               <div className="d-flex justify-content-center">
               <img
                 className="my-5 mx-5"
@@ -73,16 +73,6 @@ const LoginPage = () => {
             <div className="text-center">
             <Link className="link-primaty d-block" href="/register">Зарегистрироваться</Link>
             </div>
-
-
-            {/* <button
-              id="login_button"
-              type="submit"
-              className="btn btn-block py-3"
-              disabled={loading ? true : false}
-            >
-              {loading ? <ButtonLoader /> : "REGISTER"}
-            </button> */}
           </Form>
         </div>
       </div>
