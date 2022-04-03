@@ -46,8 +46,8 @@ export default NextAuth({
   callbacks: {
     jwt: async (token, user) => {
       if (user) {
-        const { isActive, role_id } = user.dataValues
-        token.user = { isActive, role_id }
+        const { isActive, role_id, id } = user.dataValues
+        token.user = { isActive, role_id, id }
       }
     
       return Promise.resolve(token);

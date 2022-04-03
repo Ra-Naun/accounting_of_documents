@@ -9,7 +9,7 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    await queryInterface.createTable('orders', {id: {
+    await queryInterface.createTable('courerord', {id: {
       allowNull: false,
       autoIncrement: true,
       primaryKey: true,
@@ -32,7 +32,7 @@ module.exports = {
     },
     status: {
       type: Sequelize.STRING,
-      default: 'created',
+      default: 'В процессе',
     },
   });
   },
@@ -44,6 +44,6 @@ module.exports = {
      * Example:
      * await queryInterface.bulkDelete('People', null, {});
      */
-     await queryInterface.dropTable('orders');
+     await queryInterface.dropTable('courerord');
   },
 };

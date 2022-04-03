@@ -1,12 +1,11 @@
 
 .requests{
   margin-top: 10px;
-}
-
-.decide{
-  &__yes{
-  }
-  &__no{
-    margin-left: 10px;
+  .decide{
+    &__yes{
+    }
+    &__no{
+      margin-left: 10px;
+    }
   }
 }

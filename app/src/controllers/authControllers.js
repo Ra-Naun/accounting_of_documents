@@ -52,7 +52,7 @@ const registerUser = catchAsyncErrors(async (req, res, next) => {
     email ,}})
 
   if (isExist) {
-    return next(new ErrorHandler("Пользователь с таким email уже зарегистрирован", 404));
+    throw new Error("Пользователь с таким email уже зарегистрирован")
   }
 
   const user = await User.build({

@@ -4,6 +4,8 @@ import config from '../config.mjs';
 import counter from './counter';
 import order from './order';
 import user from './user';
+import storage from './storage';
+import courerord from './courerord';
 
 const db = { models: {} };
 
@@ -14,7 +16,9 @@ const sequelize = config.use_env_variable
 const models = [
   counter,
   user,
-  order
+  order,
+  storage,
+  courerord
 ];
 
 // eslint-disable-next-line no-restricted-syntax

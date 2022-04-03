@@ -9,8 +9,6 @@ export default function TableDec(props) {
   if (error) return <div>Ошибка загрузки</div>;
   if (!data) return <div>Загрузка...</div>;
 
-  console.log('~| data: ', data);
-
   return (
     <Table striped bordered hover>
     <thead>
