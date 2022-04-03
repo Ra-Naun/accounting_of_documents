@@ -1,9 +1,7 @@
-import { Container, Row, Card, Button } from 'react-bootstrap';
+import Delivery from '../../components/delivery/Delivery';
 
 export default function Home() {
   return (
-    <Container className="md-container">
-      delivery
-    </Container>
+    <Delivery></Delivery>
   );
 }

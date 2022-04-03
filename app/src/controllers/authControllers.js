@@ -1,5 +1,6 @@
 import catchAsyncErrors from '../middlewares/catchAsyncErrors';
 import { preparePassword, ID_MATCHER } from '../utils/cryptoUtils';
+import ErrorHandler from "../utils/errorHandler";
 
 import db from '../db/models';
 
@@ -42,10 +43,17 @@ const disableUser = catchAsyncErrors(async (req, res) => {
 });
 
 // Register user   =>   /api/admin/new-user
-const registerUser = catchAsyncErrors(async (req, res) => {
+const registerUser = catchAsyncErrors(async (req, res, next) => {
   // TODO check Auth
   const { name, email, password, secondName, role, phoneNumber } = req.body;
   const correctPass = await preparePassword(password);
+
+  const isExist = await User.findOne({ where: { 
+    email ,}})
+
+  if (isExist) {
+    return next(new ErrorHandler("Пользователь с таким email уже зарегистрирован", 404));
+  }
 
   const user = await User.build({
     name,

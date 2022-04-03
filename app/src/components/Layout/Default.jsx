@@ -8,7 +8,8 @@ function Default({ children, title }) {
     <>
       <Header />
       {title && <Head><title>{title}</title></Head>}
-      <main>{children}</main>
+      <main>
+        {children}</main>
       <Footer />
     </>
   );

@@ -1,46 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { useRouter } from "next/router";
+import React, { useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import Link from "next/link";
+import { signIn } from "next-auth/client";
+import { toast } from "react-toastify";
 
 const LoginPage = () => {
-  const router = useRouter();
+  const [login, setLogin] = useState("");
+  const [password, setPassword] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  const [user, setUser] = useState({
-    login: "",
-    password: "",
-  });
-
-  const { login, password } = user;
-
-//   const { success, error, loading } = useSelector((state) => state.auth);
-
-  useEffect(() => {
-    // if (success) {
-    //   router.push("/login");
-    // }
-
-    // if (error) {
-    //   toast.error(error);
-    //   dispatch(clearErrors());
-    // }
-  }, [router]); //success error
-
-  const submitHandler = (e) => {
+  const submitHandler = async (e) => {
     e.preventDefault();
 
-    const userData = {
+    setLoading(true);
+
+    const result = await signIn("credentials", {
+      redirect: false,
       login,
       password,
-    };
+    });
 
-    // dispatch(registerUser(userData));
+    setLoading(false);
+
+    if (result.error) {
+      toast.error(result.error);
+    } else {
+      window.location.href = "/";
+    }
   };
 
-  const onChange = (e) => {
-      setUser({ ...user, [e.target.name]: e.target.value });
-  };
-
+  const isDisable = !login || !password || loading
   return (
     <div className="d-flex justify-content-center mt-5 mb-3">
       <div className="wrapper">
@@ -57,32 +46,22 @@ const LoginPage = () => {
               </div>
 
             <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                <Form.Control size="lg" type="text" placeholder="Логин" value={login} onChange={onChange}/>
+                <Form.Control size="lg" type="text" placeholder="Логин" value={login} onChange={(e) => setLogin(e.target.value)}/>
             </Form.Group>
 
             <Form.Group className="mb-4" controlId="exampleForm.ControlInput1">
-                <Form.Control size="lg" type="password" placeholder="Фамилия" value={password} onChange={onChange} />
+                <Form.Control size="lg" type="password" placeholder="Пароль" value={password} onChange={(e) => setPassword(e.target.value)} />
             </Form.Group>
 
-            <Button size="lg" className="w-100" variant="primary" type="submit">Войти</Button>
+            <Button disabled={isDisable} size="lg" className="w-100" variant="primary" type="submit">{loading ? "...Загрузка" : "Войти"}</Button>
 
             <div className="text-center mt-3 mb-3">
-            <Link className="link-primary" href="/register">Не удается войти?</Link>
+              <Link className="link-primary" href="/register">Не удается войти?</Link>
             </div>
 
             <div className="text-center">
-            <Link className="link-primaty d-block" href="/register">Зарегистрироваться</Link>
+              <Link className="link-primaty d-block" href="/register">Зарегистрироваться</Link>
             </div>
-
-
-            {/* <button
-              id="login_button"
-              type="submit"
-              className="btn btn-block py-3"
-              disabled={loading ? true : false}
-            >
-              {loading ? <ButtonLoader /> : "REGISTER"}
-            </button> */}
           </Form>
         </div>
       </div>

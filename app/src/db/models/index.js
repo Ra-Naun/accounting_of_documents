@@ -2,6 +2,7 @@ import { Sequelize } from 'sequelize';
 import config from '../config.mjs';
 
 import counter from './counter';
+import order from './order';
 import user from './user';
 
 const db = { models: {} };
@@ -13,6 +14,7 @@ const sequelize = config.use_env_variable
 const models = [
   counter,
   user,
+  order
 ];
 
 // eslint-disable-next-line no-restricted-syntax
