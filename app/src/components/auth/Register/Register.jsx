@@ -48,6 +48,8 @@ const RegisterPage = () => {
       role,
     };
 
+    localStorage.setItem('role', role)
+
     dispatch(registerUser(userData));
   };
 

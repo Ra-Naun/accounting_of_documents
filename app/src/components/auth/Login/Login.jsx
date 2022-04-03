@@ -4,6 +4,13 @@ import Link from "next/link";
 import { signIn } from "next-auth/client";
 import { toast } from "react-toastify";
 
+const PAGES_CONFIG = {
+  'Администратор': '/admin/requests',
+  'Работник склада': '/storage',
+  'Экспедитор': '/delivery',
+  'Продавец': '/shop'
+}
+
 const LoginPage = () => {
   const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
@@ -11,6 +18,7 @@ const LoginPage = () => {
 
   const submitHandler = async (e) => {
     e.preventDefault();
+    const role = localStorage.getItem('role')
 
     setLoading(true);
 
@@ -25,7 +33,7 @@ const LoginPage = () => {
     if (result.error) {
       toast.error(result.error);
     } else {
-      window.location.href = "/";
+      window.location.href = PAGES_CONFIG[role] || '/admin/requests'
     }
   };
 

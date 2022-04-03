@@ -13,7 +13,7 @@ const MATCHER = {
 export default function TableDec(props) {
   const [searchText, setSearchText] = useState('');
   const query = `page=${1}&searchQuery=${searchText}`;
-  const { data, error } = useSWR(`/api/delivery/get-orders?${query}`, fetcher, { refreshInterval: 11150 });
+  const { data, error } = useSWR(`/api/delivery/get-orders?${query}`, fetcher, { refreshInterval: 150 });
   const [section, setSection] = useState('Текущие')
 
   if (error) return <div>Ошибка загрузки</div>;

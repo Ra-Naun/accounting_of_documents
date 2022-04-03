@@ -12,7 +12,7 @@ export default function TableRow({ section, id, name, ammount, status, storeNumb
         <td>{storeNumber}</td>
         <td>{moment(createdAt).format('YYYY-MM-DD, h:mm a') }</td>
         <td>${price}</td>
-        {section === 'Доступные' && <th>{status === 'В процессе' && <Decide id = {id}/>}</th>}
+        {section === 'Доступные' && <th>{status === 'Готово к доставке' && <Decide id = {id}/>}</th>}
         {!['История', 'Доступные'].includes(section) && <td className="table-row__status">{<Status status={status}/>}</td>}
       </tr>
     </>
