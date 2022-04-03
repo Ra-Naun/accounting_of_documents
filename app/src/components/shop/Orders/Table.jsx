@@ -1,8 +1,15 @@
+import { useState } from 'react';
 import { Table, Container } from 'react-bootstrap';
 import TableRow from './TableRow';
 
 export default function TableDec({ orders }) {
-  console.log('~| orders: ', orders);
+  const sortTypes = {
+    grow: 'grow',
+    loss: 'loss',
+  };
+
+  const [sortType, setSortType] = useState(sortTypes.grow);
+  const [selectedRow, setSelectedRow] = useState(-1);
 
   return (
     <Table striped bordered hover>
@@ -21,7 +28,7 @@ export default function TableDec({ orders }) {
     <tbody>
     {
       orders?.length ? orders.map(
-        (item, idx) => (<TableRow key = {item.id} count = {idx} item = {item}/>),
+        (item, idx) => (<TableRow bySort={idx === selectedRow} key = {item.id} count = {idx} item = {item}/>),
       )
       : <Container className="md-container">Ничего нет...</Container>
     }
