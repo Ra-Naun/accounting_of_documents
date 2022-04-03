@@ -1,10 +1,10 @@
 import nc from 'next-connect';
 
-import { registerNewUser } from '../../../controllers/authControllers';
+import { returnOrder } from '../../../controllers/ordersController';
 import onError from '../../../middlewares/errors.js';
 
 const handler = nc({ onError });
 
-handler.post(registerNewUser);
+handler.post(returnOrder);
 
 export default handler;

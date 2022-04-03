@@ -13,6 +13,7 @@
     "express-session": "^1.17.1",
     "mobx": "^6.0.1",
     "mobx-react": "^7.0.0",
+    "moment": "^2.29.1",
     "next": "latest",
     "next-absolute-url": "^1.2.2",
     "next-connect": "^0.12.2",

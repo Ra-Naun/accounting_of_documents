@@ -1,14 +1,14 @@
-import ErrorHandler from "../utils/errorHandler";
+import ErrorHandler from '../utils/errorHandler';
 
 const middleware = (err, req, res, next) => {
-    console.log(err)
+    console.log(err);
   err.statusCode = err.statusCode || 500;
 
   let error = { ...err };
 
   err.message = err.message;
 
-  if (err.name === "CastError") {
+  if (err.name === 'CastError') {
     const message = `Resource not found. Invalid ${err.path}`;
     error = new ErrorHandler(message, 400);
   }
@@ -21,4 +21,4 @@ const middleware = (err, req, res, next) => {
   });
 };
 
-export default middleware
+export default middleware;
