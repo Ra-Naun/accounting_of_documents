@@ -66,18 +66,6 @@ function Delivery() {
      <Container className="md-container bg-light my-3" style={{minHeight: '500px'}}>
       <div className='row d-flex align-items-center justify-content-between'>
         <div className='col-4'><h1>Заказы</h1></div>
-        <div className='col-8'>
-          <Button size='lg' className='mx-2 px-3' onClick={() => setSection('currently')} variant={checkActive('currently')}>
-            Текущие
-          </Button>
-          <Button size='lg' className='mx-2 px-3' onClick={() => setSection('available')} variant={checkActive('available')}>
-            Доступные
-          </Button>
-          <Button size='lg' className='mx-2 px-3' onClick={() => setSection('history')} variant={checkActive('history')}>
-            История
-          </Button>
-        </div>
-      </div>
       <div>
       <Table bordered hover>
   <thead>

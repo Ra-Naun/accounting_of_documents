@@ -1,10 +1,10 @@
 import nc from 'next-connect';
 
-import { closeOrder } from '../../../controllers/shop/ordersController';
+import { takeCourerOrder } from '../../../controllers/delivery/ordersController';
 import onError from '../../../middlewares/errors.js';
 
 const handler = nc({ onError });
 
-handler.post(closeOrder);
+handler.post(takeCourerOrder);
 
 export default handler;

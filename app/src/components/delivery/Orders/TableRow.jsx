@@ -2,20 +2,18 @@ import moment from 'moment';
 import Decide from './Decide';
 import Status from './Status';
 
-export default function TableRow(props) {
-  const { item, count: idx } = props;
-  const { name, count, status, orderDate, cost, storageName } = item;
-  return (
+export default function TableRow({ section, id, name, ammount, status, storeNumber, price, createdAt }) {
+    return (
     <>
       <tr className="table-row">
-        <td>{idx}</td>
+        <td>{id}</td>
         <td>{name}</td>
-        <td>{count}</td>
-        <td className="table-row__status">{<Status status={status}/>}</td>
-        <td>{moment(orderDate).format('YYYY-MM-DD, h:mm a') }</td>
-        <td>${cost}</td>
-        <td>{storageName}</td>
-        <th>{status === 'Ожидает' && <Decide item = {item}/>}</th>
+        <td>{ammount}</td>
+        <td>{storeNumber}</td>
+        <td>{moment(createdAt).format('YYYY-MM-DD, h:mm a') }</td>
+        <td>${price}</td>
+        {section === 'Доступные' && <th>{status === 'В процессе' && <Decide id = {id}/>}</th>}
+        {!['История', 'Доступные'].includes(section) && <td className="table-row__status">{<Status status={status}/>}</td>}
       </tr>
     </>
   );

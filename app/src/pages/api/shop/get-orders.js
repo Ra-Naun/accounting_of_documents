@@ -1,10 +1,9 @@
 import nc from 'next-connect';
-
-import { getCourerOrders } from '../../../controllers/ordersController';
+import { getOrders } from '../../../controllers/shop/ordersController';
 import onError from '../../../middlewares/errors.js';
 
 const handler = nc({ onError });
 
-handler.get(getCourerOrders);
+handler.get(getOrders);
 
 export default handler;
