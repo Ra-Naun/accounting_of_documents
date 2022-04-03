@@ -11,18 +11,10 @@ export default function Home() {
 
 
 export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
-
-  if (!session || !session.user.isActive) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
-
   return {
-    props: {},
+    redirect: {
+      destination: "/login",
+      permanent: false,
+    },
   };
 }
