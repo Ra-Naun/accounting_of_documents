@@ -11,19 +11,19 @@ export default function Home() {
   );
 }
 
-export async function getServerSideProps(context) {
-  const session = await getSession({ req: context.req });
-  console.log(session)
-  if (!session || session.user.role_id !== ID_MATCHER['Продавец'] || !session.user.isActive) {
-    return {
-      redirect: {
-        destination: "/login",
-        permanent: false,
-      },
-    };
-  }
+// export async function getServerSideProps(context) {
+//   const session = await getSession({ req: context.req });
+//   console.log(session)
+//   if (!session || session.user.role_id !== ID_MATCHER['Продавец'] || !session.user.isActive) {
+//     return {
+//       redirect: {
+//         destination: "/login",
+//         permanent: false,
+//       },
+//     };
+//   }
 
-  return {
-    props: {},
-  };
-}
+//   return {
+//     props: {},
+//   };
+// }
